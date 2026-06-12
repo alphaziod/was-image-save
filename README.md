@@ -48,19 +48,180 @@ Extracted from a modified `was-ns/WAS_Node_Suite.py`.
 - extracted source lines: 7339-7634
 - length: 296 lines
 
-## Usage
+# Installation guide
 
-Clone this repository:
+This patch expects an existing WAS Node Suite installation.
 
-git clone https://github.com/alphaziod/was-image-save.git
+It does not replace the full WAS Node Suite. It only replaces the `WAS_Image_Save` class inside:
 
-Then patch your local WAS Node Suite file:
+`ComfyUI/custom_nodes/was-ns/WAS_Node_Suite.py`
 
-python install_patch.py /path/to/ComfyUI/custom_nodes/was-ns/WAS_Node_Suite.py
+The patch script creates a backup before modifying the file.
 
-The script creates a backup before replacing the class.
+## Requirements
 
-Restart ComfyUI after patching.
+You need:
+
+- ComfyUI already installed
+- WAS Node Suite already installed in `ComfyUI/custom_nodes/was-ns`
+- Git
+- Python 3
+
+## Windows
+
+Open PowerShell.
+
+Go to your ComfyUI custom nodes folder:
+
+`cd C:\path\to\ComfyUI\custom_nodes`
+
+Clone this patch repo:
+
+`git clone https://github.com/alphaziod/was-image-save.git`
+
+Apply the patch to your WAS Node Suite file:
+
+`cd was-image-save`
+
+`python install_patch.py C:\path\to\ComfyUI\custom_nodes\was-ns\WAS_Node_Suite.py`
+
+If Python is not found, try:
+
+`py install_patch.py C:\path\to\ComfyUI\custom_nodes\was-ns\WAS_Node_Suite.py`
+
+Then restart ComfyUI.
+
+## macOS
+
+Open Terminal.
+
+Go to your ComfyUI custom nodes folder:
+
+`cd /path/to/ComfyUI/custom_nodes`
+
+Clone this patch repo:
+
+`git clone https://github.com/alphaziod/was-image-save.git`
+
+Apply the patch:
+
+`cd was-image-save`
+
+`python3 install_patch.py /path/to/ComfyUI/custom_nodes/was-ns/WAS_Node_Suite.py`
+
+If Git is missing and you use Homebrew:
+
+`brew install git`
+
+Then restart ComfyUI.
+
+## Linux: Debian / Ubuntu
+
+Install Git and Python if needed:
+
+`sudo apt update`
+
+`sudo apt install -y git python3`
+
+Go to your ComfyUI custom nodes folder:
+
+`cd /path/to/ComfyUI/custom_nodes`
+
+Clone this patch repo:
+
+`git clone https://github.com/alphaziod/was-image-save.git`
+
+Apply the patch:
+
+`cd was-image-save`
+
+`python3 install_patch.py /path/to/ComfyUI/custom_nodes/was-ns/WAS_Node_Suite.py`
+
+Then restart ComfyUI.
+
+## Linux: Fedora
+
+Install Git and Python if needed:
+
+`sudo dnf install -y git python3`
+
+Go to your ComfyUI custom nodes folder:
+
+`cd /path/to/ComfyUI/custom_nodes`
+
+Clone this patch repo:
+
+`git clone https://github.com/alphaziod/was-image-save.git`
+
+Apply the patch:
+
+`cd was-image-save`
+
+`python3 install_patch.py /path/to/ComfyUI/custom_nodes/was-ns/WAS_Node_Suite.py`
+
+Example with a common local path:
+
+`python3 install_patch.py ~/AI/ComfyUI/custom_nodes/was-ns/WAS_Node_Suite.py`
+
+Then restart ComfyUI.
+
+## Linux: Arch
+
+Install Git and Python if needed:
+
+`sudo pacman -S --needed git python`
+
+Go to your ComfyUI custom nodes folder:
+
+`cd /path/to/ComfyUI/custom_nodes`
+
+Clone this patch repo:
+
+`git clone https://github.com/alphaziod/was-image-save.git`
+
+Apply the patch:
+
+`cd was-image-save`
+
+`python install_patch.py /path/to/ComfyUI/custom_nodes/was-ns/WAS_Node_Suite.py`
+
+Then restart ComfyUI.
+
+## Linux: NixOS
+
+Temporary shell method:
+
+`nix-shell -p git python3`
+
+Then:
+
+`cd /path/to/ComfyUI/custom_nodes`
+
+`git clone https://github.com/alphaziod/was-image-save.git`
+
+`cd was-image-save`
+
+`python3 install_patch.py /path/to/ComfyUI/custom_nodes/was-ns/WAS_Node_Suite.py`
+
+Then restart ComfyUI.
+
+If you manage ComfyUI declaratively, keep this repo as a patch step in your setup instead of editing the Nix store directly.
+
+## Verify
+
+After patching, restart ComfyUI and check that the node is still named:
+
+`Image Save`
+
+The node should now be able to reload the latest real saved image from its output folder when the upstream image chain is bypassed.
+
+## Restore backup
+
+The patch script creates a backup next to the original file, with a name like:
+
+`WAS_Node_Suite.py.bak-was-image-save-YYYYMMDD-HHMMSS`
+
+To restore manually, copy that backup over `WAS_Node_Suite.py`, then restart ComfyUI.
 
 ## Important
 
